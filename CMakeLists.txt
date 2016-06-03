@@ -1,0 +1,22 @@
+cmake_minimum_required(VERSION 3.2)
+project(mbgl LANGUAGES CXX C)
+include(cmake/npm.cmake)
+include(cmake/mason.cmake)
+include(cmake/mbgl.cmake)
+
+set(MASON_geometry_VERSION 0.7.0)
+set(MASON_variant_VERSION 1.1.0)
+set(MASON_unique_resource_VERSION dev)
+set(MASON_rapidjson_VERSION 1.0.2)
+set(MASON_boost_VERSION 1.60.0)
+set(MASON_geojsonvt_VERSION 4.1.2)
+set(MASON_earcut_VERSION 0.11)
+set(MASON_protozero_VERSION 1.3.0)
+set(MASON_gtest_VERSION 1.7.0)
+set(MASON_pixelmatch_VERSION 0.9.0)
+
+set(CMAKE_CONFIGURATION_TYPES Debug Release)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Wall -Wextra -Wpedantic")
+
+include(cmake/core.cmake)
+include(cmake/test.cmake)

@@ -119,7 +119,7 @@ TEST(StyleParser, FontStacks) {
     style::Parser parser;
     parser.parse(util::read_file("test/fixtures/style_parser/font_stacks.json"));
     auto result = parser.fontStacks();
-    ASSERT_EQ(3, result.size());
+    ASSERT_EQ(3ul, result.size());
     ASSERT_EQ(FontStack({"a"}), result[0]);
     ASSERT_EQ(FontStack({"a", "b"}), result[1]);
     ASSERT_EQ(FontStack({"a", "b", "c"}), result[2]);

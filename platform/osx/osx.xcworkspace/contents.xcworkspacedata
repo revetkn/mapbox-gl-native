@@ -4,7 +4,4 @@
    <FileRef
       location = "container:osx.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:../../build/osx/platform/osx/platform.xcodeproj">
-   </FileRef>
 </Workspace>
