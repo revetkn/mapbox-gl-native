@@ -17,6 +17,7 @@ VARIANT_VERSION=1.1.0
 ZLIB_VERSION=system
 WEBP_VERSION=0.5.0
 EARCUT_VERSION=0.11
+VALGRIND_VERSION=latest
 
 function print_default_flags {
     CONFIG+="    'cflags': $(quote_flags -fvisibility=hidden),"$LN
