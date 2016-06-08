@@ -48,7 +48,7 @@ void Painter::renderSDF(SymbolBucket &bucket,
     bool alignedWithMap = rotationAlignment == RotationAlignmentType::Map;
     float gammaScale = 1.0f;
 
-    if (alignedWithMap) {
+    if (false && alignedWithMap) {
         scale *= tileID.pixelsToTileUnits(1, state.getZoom());
         exScale.fill(scale);
         gammaScale /= std::cos(state.getPitch());
@@ -62,6 +62,8 @@ void Painter::renderSDF(SymbolBucket &bucket,
     sdfShader.u_texsize = texsize;
     sdfShader.u_skewed = alignedWithMap;
     sdfShader.u_texture = 0;
+    sdfShader.u_pitch = state.getPitch() / 360 * 2 * M_PI;
+    sdfShader.u_aspect_ratio = (state.getWidth() * 1.0f) / (state.getHeight() * 1.0f);
 
     // adjust min/max zooms for variable font sies
     float zoomAdjust = std::log(fontSize / layoutSize) / std::log(2);

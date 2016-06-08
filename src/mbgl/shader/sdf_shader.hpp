@@ -17,6 +17,8 @@ public:
     Uniform<GLfloat>                u_buffer        = {"u_buffer",        *this};
     Uniform<GLfloat>                u_gamma         = {"u_gamma",         *this};
     Uniform<GLfloat>                u_zoom          = {"u_zoom",          *this};
+    Uniform<GLfloat>                u_pitch         = {"u_pitch",         *this};
+    Uniform<GLfloat>                u_aspect_ratio  = {"u_aspect_ratio",  *this};
     Uniform<GLint>                  u_skewed        = {"u_skewed",        *this};
     Uniform<GLint>                  u_texture       = {"u_texture",       *this};
     Uniform<GLint>                  u_fadetexture   = {"u_fadetexture",   *this};
