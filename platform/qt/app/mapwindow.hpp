@@ -19,7 +19,6 @@ public:
     void selfTest();
 
 protected slots:
-    void animationValueChanged();
     void animationFinished();
 
 private:
@@ -41,9 +40,9 @@ private:
 
     QPropertyAnimation m_bearingAnimation;
     QPropertyAnimation m_zoomAnimation;
+    QPropertyAnimation m_pitchAnimation;
 
-    unsigned m_animationTicks = 0;
-    unsigned m_frameDraws = 0;
+    uint8_t currentStyleIndex = 0;
 };
 
 #endif

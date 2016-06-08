@@ -13,6 +13,7 @@ MapWindow::MapWindow(const QMapboxGLSettings &settings)
     : m_map(nullptr, settings)
     , m_bearingAnimation(&m_map, "bearing")
     , m_zoomAnimation(&m_map, "zoom")
+    , m_pitchAnimation(&m_map, "pitch")
 {
     connect(&m_map, SIGNAL(needsRendering()), this, SLOT(updateGL()));
 
@@ -22,39 +23,46 @@ MapWindow::MapWindow(const QMapboxGLSettings &settings)
     changeStyle();
 
     connect(&m_zoomAnimation, SIGNAL(finished()), this, SLOT(animationFinished()));
-    connect(&m_zoomAnimation, SIGNAL(valueChanged(const QVariant&)), this, SLOT(animationValueChanged()));
 
     setWindowIcon(QIcon(":icon.png"));
 }
 
 void MapWindow::selfTest()
 {
+    m_bearingAnimation.stop();
+    m_zoomAnimation.stop();
+    m_pitchAnimation.stop();
+
+    // Set default location to Helsinki.
+    m_map.setCoordinateZoom(QMapbox::Coordinate(60.170448, 24.942046), 10);
+    m_map.setPitch(0);
+
     m_bearingAnimation.setDuration(kAnimationDuration);
     m_bearingAnimation.setEndValue(m_map.bearing() + 360 * 4);
     m_bearingAnimation.start();
 
     m_zoomAnimation.setDuration(kAnimationDuration);
-    m_zoomAnimation.setEndValue(m_map.zoom() + 3);
+    m_zoomAnimation.setEndValue(18);
     m_zoomAnimation.start();
+
+    m_pitchAnimation.setDuration(kAnimationDuration);
+    m_pitchAnimation.setEndValue(60);
+    m_pitchAnimation.start();
 }
 
 void MapWindow::animationFinished()
 {
-    qDebug() << "Animation ticks/s: " <<  m_animationTicks / static_cast<float>(kAnimationDuration) * 1000.;
-    qDebug() << "Frame draws/s: " <<  m_frameDraws / static_cast<float>(kAnimationDuration) * 1000.;
+    if (currentStyleIndex != 0) {
+        changeStyle();
+        selfTest();
+        return;
+    }
 
     qApp->quit();
 }
 
-void MapWindow::animationValueChanged()
-{
-    m_animationTicks++;
-}
-
 void MapWindow::changeStyle()
 {
-    static uint8_t currentStyleIndex;
-
     auto& styles = QMapbox::defaultStyles();
 
     m_map.setStyleURL(styles[currentStyleIndex].first);
@@ -162,6 +170,5 @@ void MapWindow::resizeGL(int w, int h)
 
 void MapWindow::paintGL()
 {
-    m_frameDraws++;
     m_map.render();
 }
