@@ -102,8 +102,6 @@ void getSegmentGlyphs(std::back_insert_iterator<GlyphInstances> glyphs, Anchor &
         float angle = std::atan2(end.y - newAnchorPoint.y, end.x - newAnchorPoint.x);
         if (!forward)
             angle += M_PI;
-        if (upsideDown)
-            angle += M_PI;
 
         glyphs = GlyphInstance{
             /* anchor */ newAnchorPoint,
