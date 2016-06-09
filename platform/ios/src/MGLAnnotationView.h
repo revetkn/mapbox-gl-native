@@ -41,6 +41,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, getter=isFlat) BOOL flat;
 
 /**
+ This property defaults to NO and becomes YES when the view is tapped/clicked on.
+ Selecting another view will first deselect the currently selected view.
+ */
+@property (nonatomic, assign, getter=isSelected) BOOL selected;
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated;
+
+/**
  Setting this property to YES will cause the annotation view to shrink as it approaches the horizon and grow as it moves away from the
  horizon when the associated map view is tilted. Conversely, setting this property to NO will ensure that the annotation view maintains
  a constant size even when the map view is tilted. To maintain consistency with annotation representations that are not backed by an

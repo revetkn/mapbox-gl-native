@@ -37,6 +37,18 @@
     self.center = self.center;
 }
 
+- (void)setSelected:(BOOL)selected
+{
+    [self setSelected:selected animated:NO];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [self willChangeValueForKey:@"selected"];
+    _selected = selected;
+    [self didChangeValueForKey:@"selected"];
+}
+
 - (void)setCenter:(CGPoint)center
 {
     [self setCenter:center pitch:0];
