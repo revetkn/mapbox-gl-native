@@ -47,6 +47,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, getter=isSelected) BOOL selected;
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated;
 
+/*
+ This property defaults to YES. Setting it to NO will cause the annotation view to ignore all touch events.
+ Subclasses may use this property to customize the appearance.
+ */
+@property (nonatomic, assign, getter=isEnabled) BOOL enabled;
+
 /**
  Setting this property to YES will cause the annotation view to shrink as it approaches the horizon and grow as it moves away from the
  horizon when the associated map view is tilted. Conversely, setting this property to NO will ensure that the annotation view maintains

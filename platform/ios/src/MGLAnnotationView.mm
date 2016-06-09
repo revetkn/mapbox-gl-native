@@ -22,6 +22,7 @@
     {
         _reuseIdentifier = [reuseIdentifier copy];
         _scalesWithViewingDistance = YES;
+        _enabled = YES;
     }
     return self;
 }
@@ -47,6 +48,13 @@
     [self willChangeValueForKey:@"selected"];
     _selected = selected;
     [self didChangeValueForKey:@"selected"];
+}
+
+- (void)setEnabled:(BOOL)enabled
+{
+    [self willChangeValueForKey:@"enabled"];
+    _enabled = enabled;
+    [self didChangeValueForKey:@"enabled"];
 }
 
 - (void)setCenter:(CGPoint)center
